@@ -1,30 +1,41 @@
-const db = [
+export interface User {
+    name: string,
+    email: string
+}
+
+const databaseFake = [
     {
-        nome: "Jorge William",
+        name: "Jorge William",
         email: "jorge@dio.com"
     },
     {
-        nome: "Flávia Carla",
+        name: "Flávia Carla",
         email: "jorge@dio.com"
     },
     {
-        nome: "Maria Lúcia",
+        name: "Maria Lúcia",
         email: "jorge@dio.com"
     },
 ]
 
 export class UserService {
+    db: User[]
+
+    constructor(database = databaseFake) {
+        this.db = database
+    }
+
     createUser = (name: string, email: string) => {
         const user = {
             name,
             email
         }
-        db.push(user)
-        console.log("Db atualizado", db);
+        this.db.push(user)
+        console.log("Db atualizado", this.db);
 
     }
     getAllUsers = () => {
-        console.log(db);
-        return db
+        console.log(this.db);
+        return this.db
     }
 }
